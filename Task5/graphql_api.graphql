@@ -1,0 +1,66 @@
+type Query {
+    object(id: ID!): Client
+    objects(documents: Boolean!): [Document]
+    objects(relatives: Boolean!): [Relative]
+}
+
+type Client {
+    id: ID!
+    name: String
+    age: Int
+}
+
+type Document {
+    id: ID!
+    type: String
+    number: String
+    issueDate: String
+    expiryDate: String
+}
+
+type Relative {
+    id: ID!
+    relationType: String
+    name: String
+    age: Int
+}
+
+# отображения информации о клиенте
+query {
+ object(id: "client1") {
+   id
+   name
+   age
+ }
+}
+
+# отображения информации о клиенте и его документах
+query {
+ object(id: "client1") {
+   id
+   name
+   age
+ }
+ objects(documents: true) {
+    id
+    type
+    number
+    issueDate
+    expiryDate
+ }
+}
+
+# отображения информации о клиенте и его родственниках
+query {
+ object(id: "client1") {
+   id
+   name
+   age
+ }
+ objects(relatives: true) {
+    id
+    relationType
+    name
+    age
+ }
+}
